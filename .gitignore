@@ -3,3 +3,4 @@
 /doordash-mockup/hive/conf/hdfs-site.xml
 /doordash-mockup/hive/conf/hive-site.xml
 /doordash-mockup/presto/etc/s3.properties
+/superset
