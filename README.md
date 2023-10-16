@@ -8,8 +8,6 @@ First, create the airflow .env files. Substitute the aws values for the correct:
 ```bash
 export AWS_ACCESS_KEY={aws_access_key}
 export AWS_SECRET_ACCESS={aws_secret_access}
-export AWS_ACCESS_KEY=AKIAZNAPYPLC6YS66VSZ
-export AWS_SECRET_ACCESS=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
 envsubst < ./airflow/.env-template > ./airflow/.env
 envsubst < ./airflow/dags/.env-template > ./airflow/dags/.env
 ```
