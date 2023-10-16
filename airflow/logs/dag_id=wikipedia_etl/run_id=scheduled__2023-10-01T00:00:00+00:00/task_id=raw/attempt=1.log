@@ -1,0 +1,599 @@
+[2023-10-11T19:09:59.685+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:09:59.736+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:09:59.737+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:09:59.849+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-11T19:09:59.880+0000] {standard_task_runner.py:57} INFO - Started process 129 to run task
+[2023-10-11T19:09:59.877+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpd6lylslw']
+[2023-10-11T19:09:59.887+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask raw
+[2023-10-11T19:10:00.041+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host 1b4c7cedd36d
+[2023-10-11T19:10:00.483+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-11T19:10:15.071+0000] {job.py:219} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 190, in heartbeat
+    session.merge(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 406, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-10-11T19:10:35.412+0000] {job.py:219} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 190, in heartbeat
+    session.merge(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 406, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-10-11T19:10:40.061+0000] {logging_mixin.py:151} INFO - ERROR while fetching and parsing ['https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/meta.wikimedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/io.wiktionary/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/pl.wiktionary/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/az.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikisource/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fi.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ka.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/th.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/pl.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wiktionary/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/vi.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/azb.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/incubator.wikimedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/tr.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikibooks/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/sr.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/el.wiktionary/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/it.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/hi.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/nl.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/eo.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/az.wikiquote/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/no.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/rue.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/es.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ko.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/bn.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ja.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fr.wiktionary/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/zh.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/de.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ca.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/he.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/lv.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/uk.wikisource/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/fa.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ar.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/bg.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/ru.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/uk.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/id.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/pt.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/sk.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/cs.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/sv.wikipedia/all-access/all-agents/daily/2023091100/2023101100', 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/commons.wikimedia/all-access/all-agents/daily/2023091100/2023101100']
+[2023-10-11T19:10:50.837+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2023-10-11T19:10:51.584+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+[2023-10-11T19:10:51.840+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+[2023-10-11T19:10:52.374+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2023-10-11T19:10:52.534+0000] {logging_mixin.py:151} WARNING - socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2023-10-11T19:10:52.535+0000] {logging_mixin.py:151} WARNING - 
+During handling of the above exception, another exception occurred:
+[2023-10-11T19:10:52.535+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2023-10-11T19:10:52.535+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+[2023-10-11T19:10:52.582+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 403, in _make_request
+    self._validate_conn(conn)
+[2023-10-11T19:10:52.582+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1053, in _validate_conn
+    conn.connect()
+[2023-10-11T19:10:52.583+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+[2023-10-11T19:10:52.583+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+[2023-10-11T19:10:52.583+0000] {logging_mixin.py:151} WARNING - urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+[2023-10-11T19:10:52.584+0000] {logging_mixin.py:151} WARNING - 
+During handling of the above exception, another exception occurred:
+[2023-10-11T19:10:52.584+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2023-10-11T19:10:52.584+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+[2023-10-11T19:10:52.585+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 798, in urlopen
+    retries = retries.increment(
+[2023-10-11T19:10:52.585+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+[2023-10-11T19:10:52.585+0000] {logging_mixin.py:151} WARNING - urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='wikimedia.org', port=443): Max retries exceeded with url: /api/rest_v1/metrics/pageviews/aggregate/meta.wikimedia/all-access/all-agents/daily/2023091100/2023101100 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+[2023-10-11T19:10:52.585+0000] {logging_mixin.py:151} WARNING - 
+During handling of the above exception, another exception occurred:
+[2023-10-11T19:10:52.586+0000] {logging_mixin.py:151} WARNING - Traceback (most recent call last):
+[2023-10-11T19:10:52.586+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 229, in project_views
+    results = self.get_concurrent(urls)
+[2023-10-11T19:10:52.586+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 423, in get_concurrent
+    return list(executor.map(f, urls))
+[2023-10-11T19:10:52.586+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 619, in result_iterator
+    yield fs.pop().result()
+[2023-10-11T19:10:52.586+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 444, in result
+    return self.__get_result()
+[2023-10-11T19:10:52.587+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+[2023-10-11T19:10:52.587+0000] {logging_mixin.py:151} WARNING -   File "/usr/local/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+[2023-10-11T19:10:52.587+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 422, in <lambda>
+    f = lambda url: requests.get(url, headers=self.headers).json()
+[2023-10-11T19:10:52.587+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+[2023-10-11T19:10:52.588+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+[2023-10-11T19:10:52.588+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+[2023-10-11T19:10:52.588+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+[2023-10-11T19:10:52.589+0000] {logging_mixin.py:151} WARNING -   File "/home/***/.local/lib/python3.8/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+[2023-10-11T19:10:52.589+0000] {logging_mixin.py:151} WARNING - requests.exceptions.ConnectionError: HTTPSConnectionPool(host='wikimedia.org', port=443): Max retries exceeded with url: /api/rest_v1/metrics/pageviews/aggregate/meta.wikimedia/all-access/all-agents/daily/2023091100/2023101100 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+[2023-10-11T19:10:52.637+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 403, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1053, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 798, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='wikimedia.org', port=443): Max retries exceeded with url: /api/rest_v1/metrics/pageviews/aggregate/meta.wikimedia/all-access/all-agents/daily/2023091100/2023101100 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/wikipedia_etl.py", line 100, in raw
+    project_views = p.project_views(domains_list)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 229, in project_views
+    results = self.get_concurrent(urls)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 423, in get_concurrent
+    return list(executor.map(f, urls))
+  File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 619, in result_iterator
+    yield fs.pop().result()
+  File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 444, in result
+    return self.__get_result()
+  File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mwviews/api/pageviews.py", line 422, in <lambda>
+    f = lambda url: requests.get(url, headers=self.headers).json()
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='wikimedia.org', port=443): Max retries exceeded with url: /api/rest_v1/metrics/pageviews/aggregate/meta.wikimedia/all-access/all-agents/daily/2023091100/2023101100 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8034ced8b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+[2023-10-11T19:10:57.626+0000] {job.py:219} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 190, in heartbeat
+    session.merge(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 406, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-10-11T19:11:03.603+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 3 for task raw ((psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 129)
+[2023-10-11T19:11:04.829+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-10-11T19:11:15.177+0000] {taskinstance.py:2782} INFO - Skipping mini scheduling run due to exception: None
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2731, in schedule_downstream_tasks
+    dag_run = with_row_locks(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2870, in one
+    return self._iter().one()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 406, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-10-11T19:27:11.611+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:11.654+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:11.655+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:27:11.722+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-11T19:27:11.740+0000] {standard_task_runner.py:57} INFO - Started process 89 to run task
+[2023-10-11T19:27:11.782+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpqij12khu']
+[2023-10-11T19:27:11.795+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask raw
+[2023-10-11T19:27:12.103+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:27:12.387+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-11T19:27:18.264+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:27:18.282+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231001T000000, start_date=20231011T192711, end_date=20231011T192718
+[2023-10-11T19:27:18.355+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:27:18.408+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:31:32.642+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:31:32.652+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:31:32.652+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:31:32.665+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-11T19:31:32.671+0000] {standard_task_runner.py:57} INFO - Started process 989 to run task
+[2023-10-11T19:31:32.674+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp9wr5ntd5']
+[2023-10-11T19:31:32.676+0000] {standard_task_runner.py:85} INFO - Job 23: Subtask raw
+[2023-10-11T19:31:32.722+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:31:32.780+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-11T19:31:36.611+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:31:36.622+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231001T000000, start_date=20231011T193132, end_date=20231011T193136
+[2023-10-11T19:31:36.675+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:31:36.694+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:46:00.429+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:46:00.437+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-11T19:46:00.437+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:46:00.447+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-11T19:46:00.452+0000] {standard_task_runner.py:57} INFO - Started process 3559 to run task
+[2023-10-11T19:46:00.455+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp1mhm29wo']
+[2023-10-11T19:46:00.457+0000] {standard_task_runner.py:85} INFO - Job 43: Subtask raw
+[2023-10-11T19:46:00.493+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:46:00.549+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-11T19:46:04.534+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:46:04.547+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231001T000000, start_date=20231011T194600, end_date=20231011T194604
+[2023-10-11T19:46:04.575+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:46:04.591+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-13T17:14:13.172+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-13T17:14:13.183+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-13T17:14:13.184+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-13T17:14:13.201+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-13T17:14:13.207+0000] {standard_task_runner.py:57} INFO - Started process 62 to run task
+[2023-10-13T17:14:13.211+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpo7r5itat']
+[2023-10-13T17:14:13.214+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask raw
+[2023-10-13T17:14:13.268+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host feba906f3341
+[2023-10-13T17:14:13.363+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-13T17:14:19.724+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-13T17:14:19.732+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231001T000000, start_date=20231013T171413, end_date=20231013T171419
+[2023-10-13T17:14:19.771+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-13T17:14:19.789+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-16T11:23:34.972+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-16T11:23:34.989+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [queued]>
+[2023-10-16T11:23:34.989+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-16T11:23:35.010+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-01 00:00:00+00:00
+[2023-10-16T11:23:35.020+0000] {standard_task_runner.py:57} INFO - Started process 62 to run task
+[2023-10-16T11:23:35.024+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-01T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpmnwevvj2']
+[2023-10-16T11:23:35.028+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask raw
+[2023-10-16T11:23:35.144+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-01T00:00:00+00:00 [running]> on host ab44499fca46
+[2023-10-16T11:23:35.364+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-01T00:00:00+00:00'
+[2023-10-16T11:23:41.118+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-16T11:23:41.136+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231001T000000, start_date=20231016T112334, end_date=20231016T112341
+[2023-10-16T11:23:41.203+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-16T11:23:41.267+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

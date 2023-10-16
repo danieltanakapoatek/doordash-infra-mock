@@ -1,0 +1,28 @@
+[2023-10-11T14:50:43.186+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted manual__2023-10-11T14:50:36.586877+00:00 [queued]>
+[2023-10-11T14:50:43.193+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted manual__2023-10-11T14:50:36.586877+00:00 [queued]>
+[2023-10-11T14:50:43.193+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T14:50:43.203+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-11 14:50:36.586877+00:00
+[2023-10-11T14:50:43.208+0000] {standard_task_runner.py:57} INFO - Started process 212 to run task
+[2023-10-11T14:50:43.211+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'manual__2023-10-11T14:50:36.586877+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpi5ls6hxm']
+[2023-10-11T14:50:43.214+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask trusted
+[2023-10-11T14:50:43.254+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted manual__2023-10-11T14:50:36.586877+00:00 [running]> on host 677b8d627291
+[2023-10-11T14:50:43.312+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-11T14:50:36.586877+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-10-11T14:50:36.586877+00:00'
+[2023-10-11T14:50:43.429+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/wikipedia_etl.py", line 133, in trusted
+    sc = SparkContext(conf=conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2023-10-11T14:50:43.436+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231011T145036, start_date=20231011T145043, end_date=20231011T145043
+[2023-10-11T14:50:43.450+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task trusted ([JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.; 212)
+[2023-10-11T14:50:43.465+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-10-11T14:50:43.480+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

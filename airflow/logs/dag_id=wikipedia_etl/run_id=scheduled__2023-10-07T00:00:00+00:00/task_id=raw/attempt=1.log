@@ -1,0 +1,74 @@
+[2023-10-11T19:12:50.633+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:12:50.933+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:12:50.934+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:12:51.341+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-11T19:12:51.636+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpuo_62e4z']
+[2023-10-11T19:12:51.691+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask raw
+[2023-10-11T19:12:51.522+0000] {standard_task_runner.py:57} INFO - Started process 170 to run task
+[2023-10-11T19:12:52.366+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host 1b4c7cedd36d
+[2023-10-11T19:12:52.965+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-11T19:27:11.653+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:11.691+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:11.692+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:27:11.827+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-11T19:27:11.844+0000] {standard_task_runner.py:57} INFO - Started process 92 to run task
+[2023-10-11T19:27:11.870+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpdst6w5xs']
+[2023-10-11T19:27:11.873+0000] {standard_task_runner.py:85} INFO - Job 6: Subtask raw
+[2023-10-11T19:27:12.087+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:27:12.402+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-11T19:27:18.188+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:27:18.208+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231007T000000, start_date=20231011T192711, end_date=20231011T192718
+[2023-10-11T19:27:18.332+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:27:18.393+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:34:15.068+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:34:15.074+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:34:15.074+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:34:15.084+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-11T19:34:15.089+0000] {standard_task_runner.py:57} INFO - Started process 2408 to run task
+[2023-10-11T19:34:15.092+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpg5nb5hr1']
+[2023-10-11T19:34:15.094+0000] {standard_task_runner.py:85} INFO - Job 35: Subtask raw
+[2023-10-11T19:34:15.129+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:34:15.183+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-11T19:34:19.356+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:34:19.371+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231007T000000, start_date=20231011T193415, end_date=20231011T193419
+[2023-10-11T19:34:19.412+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:34:19.432+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:49:51.576+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:49:51.582+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-11T19:49:51.583+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:49:51.593+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-11T19:49:51.598+0000] {standard_task_runner.py:57} INFO - Started process 5128 to run task
+[2023-10-11T19:49:51.601+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '55', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp5pjs8pr4']
+[2023-10-11T19:49:51.603+0000] {standard_task_runner.py:85} INFO - Job 55: Subtask raw
+[2023-10-11T19:49:51.641+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:49:51.703+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-11T19:49:55.688+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:49:55.696+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231007T000000, start_date=20231011T194951, end_date=20231011T194955
+[2023-10-11T19:49:55.721+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:49:55.737+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-13T17:21:23.715+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-13T17:21:23.724+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-13T17:21:23.725+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-13T17:21:23.736+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-13T17:21:23.742+0000] {standard_task_runner.py:57} INFO - Started process 1566 to run task
+[2023-10-13T17:21:23.744+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp530dn3sg']
+[2023-10-13T17:21:23.747+0000] {standard_task_runner.py:85} INFO - Job 15: Subtask raw
+[2023-10-13T17:21:23.784+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host feba906f3341
+[2023-10-13T17:21:23.852+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-13T17:21:28.120+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-13T17:21:28.136+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231007T000000, start_date=20231013T172123, end_date=20231013T172128
+[2023-10-13T17:21:28.180+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-13T17:21:28.200+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2023-10-16T11:28:45.141+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-16T11:28:45.246+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [queued]>
+[2023-10-16T11:28:45.247+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-16T11:28:45.259+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): raw> on 2023-10-07 00:00:00+00:00
+[2023-10-16T11:28:45.265+0000] {standard_task_runner.py:57} INFO - Started process 1543 to run task
+[2023-10-16T11:28:45.267+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'raw', 'scheduled__2023-10-07T00:00:00+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp8jd1nv_g']
+[2023-10-16T11:28:45.270+0000] {standard_task_runner.py:85} INFO - Job 15: Subtask raw
+[2023-10-16T11:28:45.307+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.raw scheduled__2023-10-07T00:00:00+00:00 [running]> on host ab44499fca46
+[2023-10-16T11:28:45.369+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='raw' AIRFLOW_CTX_EXECUTION_DATE='2023-10-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-07T00:00:00+00:00'
+[2023-10-16T11:28:49.207+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-16T11:28:49.215+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=raw, execution_date=20231007T000000, start_date=20231016T112845, end_date=20231016T112849
+[2023-10-16T11:28:49.257+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-16T11:28:49.271+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

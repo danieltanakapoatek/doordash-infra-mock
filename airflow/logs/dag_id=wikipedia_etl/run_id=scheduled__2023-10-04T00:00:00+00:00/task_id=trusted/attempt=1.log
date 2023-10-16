@@ -1,0 +1,80 @@
+[2023-10-11T19:27:21.596+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:21.606+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:27:21.606+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:27:21.624+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-04 00:00:00+00:00
+[2023-10-11T19:27:21.635+0000] {standard_task_runner.py:57} INFO - Started process 230 to run task
+[2023-10-11T19:27:21.639+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'scheduled__2023-10-04T00:00:00+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmprz87hyq1']
+[2023-10-11T19:27:21.643+0000] {standard_task_runner.py:85} INFO - Job 14: Subtask trusted
+[2023-10-11T19:27:21.698+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:27:21.897+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-04T00:00:00+00:00'
+[2023-10-11T19:27:35.394+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/wikipedia_etl.py", line 133, in trusted
+    sc = SparkContext(conf=conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2023-10-11T19:27:35.415+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231004T000000, start_date=20231011T192721, end_date=20231011T192735
+[2023-10-11T19:27:35.486+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 14 for task trusted ([JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.; 230)
+[2023-10-11T19:27:35.509+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-10-11T19:27:35.655+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:32:47.358+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:32:47.364+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:32:47.364+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:32:47.373+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-04 00:00:00+00:00
+[2023-10-11T19:32:47.377+0000] {standard_task_runner.py:57} INFO - Started process 1693 to run task
+[2023-10-11T19:32:47.381+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'scheduled__2023-10-04T00:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp0hd4fvah']
+[2023-10-11T19:32:47.382+0000] {standard_task_runner.py:85} INFO - Job 30: Subtask trusted
+[2023-10-11T19:32:47.418+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:32:47.479+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-04T00:00:00+00:00'
+[2023-10-11T19:33:04.750+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:33:04.759+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231004T000000, start_date=20231011T193247, end_date=20231011T193304
+[2023-10-11T19:33:04.804+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:33:04.815+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-10-11T19:48:02.204+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:48:02.212+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-11T19:48:02.212+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-11T19:48:02.222+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-04 00:00:00+00:00
+[2023-10-11T19:48:02.227+0000] {standard_task_runner.py:57} INFO - Started process 4368 to run task
+[2023-10-11T19:48:02.229+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'scheduled__2023-10-04T00:00:00+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpxhp_2v4q']
+[2023-10-11T19:48:02.232+0000] {standard_task_runner.py:85} INFO - Job 50: Subtask trusted
+[2023-10-11T19:48:02.270+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [running]> on host f711e14c143e
+[2023-10-11T19:48:02.331+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-04T00:00:00+00:00'
+[2023-10-11T19:48:31.817+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-11T19:48:31.830+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231004T000000, start_date=20231011T194802, end_date=20231011T194831
+[2023-10-11T19:48:31.880+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-11T19:48:31.891+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-10-13T17:19:10.454+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-13T17:19:10.465+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-13T17:19:10.465+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-13T17:19:10.482+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-04 00:00:00+00:00
+[2023-10-13T17:19:10.491+0000] {standard_task_runner.py:57} INFO - Started process 852 to run task
+[2023-10-13T17:19:10.496+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'scheduled__2023-10-04T00:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmp6jmm8fee']
+[2023-10-13T17:19:10.500+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask trusted
+[2023-10-13T17:19:10.562+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [running]> on host feba906f3341
+[2023-10-13T17:19:10.671+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-04T00:00:00+00:00'
+[2023-10-13T17:19:47.677+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-13T17:19:47.688+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231004T000000, start_date=20231013T171910, end_date=20231013T171947
+[2023-10-13T17:19:47.730+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-13T17:19:47.743+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-10-16T11:26:42.536+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-16T11:26:42.543+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [queued]>
+[2023-10-16T11:26:42.544+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 3
+[2023-10-16T11:26:42.555+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): trusted> on 2023-10-04 00:00:00+00:00
+[2023-10-16T11:26:42.560+0000] {standard_task_runner.py:57} INFO - Started process 828 to run task
+[2023-10-16T11:26:42.563+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'wikipedia_etl', 'trusted', 'scheduled__2023-10-04T00:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/wikipedia_etl.py', '--cfg-path', '/tmp/tmpoe02rw3a']
+[2023-10-16T11:26:42.565+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask trusted
+[2023-10-16T11:26:42.601+0000] {task_command.py:415} INFO - Running <TaskInstance: wikipedia_etl.trusted scheduled__2023-10-04T00:00:00+00:00 [running]> on host ab44499fca46
+[2023-10-16T11:26:42.670+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='wikipedia_etl' AIRFLOW_CTX_TASK_ID='trusted' AIRFLOW_CTX_EXECUTION_DATE='2023-10-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-10-04T00:00:00+00:00'
+[2023-10-16T11:27:16.565+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-10-16T11:27:16.577+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=wikipedia_etl, task_id=trusted, execution_date=20231004T000000, start_date=20231016T112642, end_date=20231016T112716
+[2023-10-16T11:27:16.692+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-10-16T11:27:16.707+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,4 @@
+/airflow/.env
+/airflow/dags/.env-template
+/doordash-mockup/hive/conf/hdfs-site.xml
+/doordash-mockup/hive/conf/hive-site.xml

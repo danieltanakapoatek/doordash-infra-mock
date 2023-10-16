@@ -1,0 +1,3 @@
+pyspark==3.5.0
+boto3==1.28.62
+mwviews==0.2.1
