@@ -21,7 +21,7 @@ envsubst < ./hive/conf/hdfs-site-template.xml > ./hive/conf/hdfs-site.xml
 envsubst < ./hive/conf/hive-site-template.xml > ./hive/conf/hive-site.xml
 ```
 
-## Inside the `doordash-mockup` build and start the services
+## Inside `doordash-mockup` folder build and start the services
 
 ### Building the Docker image
 
