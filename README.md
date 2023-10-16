@@ -25,12 +25,12 @@ envsubst < ./hive/conf/hive-site-template.xml > ./hive/conf/hive-site.xml
 
 ### Building the Docker image
 
-First, build the Docker image by running:
+First, build the Docker images by running:
 
 ```bash
 docker-compose build
 ```
-After, create a single network that will be shared between services:
+After, create a single network that will be shared between services (this will allow to create connections with the service names):
 ```bash
 docker network create doordash-mockup-network
 ```
@@ -43,7 +43,7 @@ Once the Docker image build is complete, run the following command to start serv
 docker-compose up -d
 ```
 
-## Configuring Presto
+## Configuring Presto configured with S3/hive and elasticsearch
 Copy the configuration files to the presto container
 (Bug located - it is mandatory to restart the container 2 times for each catalog configuration):
 
@@ -102,15 +102,16 @@ MSCK REPAIR TABLE wikipedia_batch;
 
 ## Submiting the Flink Job with JobManager
 
-Run the flink job - in this example it will get the data provided from the Kafka Producer:
+Run the flink job - in this example it will get the data provided from the Kafka Producer and process it sending to an elasticsearch sink:
 
 ```shell script
 docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window.py -d
 ```
+You can check the created job in the Flink Web UI [http://localhost:8081](http://localhost:8081).
 ## Configuring Superset
-After that, clone the [Superset repository](https://github.com/apache/superset).
+After that, clone the [Superset repository](https://github.com/apache/superset). It is recommended to have the superset folder in the same folder structure as the `doordash-infra-mock`
 
-Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file:
+Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file (this will allow to communicate the services using their name as URI):
 ```
 networks: 
   default: 
@@ -118,7 +119,7 @@ networks:
       name: doordash-mockup-network
 ```
 
-Run the superset container with the production docker-compose file:
+Start the superset container with the production docker-compose file:
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml up -d
 ```
@@ -127,13 +128,13 @@ Kill the volumes if needed (sometimes the UI loads with missing info regarding d
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml down -v
 ```
-Check the Superset UI at [http://localhost:8088](http://localhost:8088) and login as:
+Check the Superset UI at [http://localhost:8088](http://localhost:8088) and login with:
 
 user: admin
 
 password: admin
 
-If you added all the services in the same network editing the docker-compose file, you can just add a new presto database with the service name using SQL Alchemy:
+If you added all the services in the same network (editing the docker-compose file), you can just add a new presto database with the service name using SQL Alchemy:
 
 ```bash
 presto://presto:8080/s3
