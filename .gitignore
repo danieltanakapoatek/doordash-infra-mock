@@ -4,4 +4,3 @@
 /doordash-mockup/hive/conf/hive-site.xml
 /doordash-mockup/presto/etc/s3.properties
 /superset
-/airflow/logs/*
