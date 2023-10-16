@@ -8,6 +8,8 @@ First, create the airflow .env files. Substitute the aws values for the correct:
 ```bash
 export AWS_ACCESS_KEY={aws_access_key}
 export AWS_SECRET_ACCESS={aws_secret_access}
+export AWS_ACCESS_KEY=AKIAZNAPYPLC6YS66VSZ
+export AWS_SECRET_ACCESS=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
 envsubst < ./airflow/.env-template > ./airflow/.env
 envsubst < ./airflow/dags/.env-template > ./airflow/dags/.env
 ```
@@ -25,14 +27,15 @@ envsubst < ./hive/conf/hive-site-template.xml > ./hive/conf/hive-site.xml
 
 ### Building the Docker image
 
-First, build the Docker images by running:
+First, create a single network that will be shared between services (this will allow to create connections with the service names):
 
 ```bash
-docker-compose build
-```
-After, create a single network that will be shared between services (this will allow to create connections with the service names):
-```bash
 docker network create doordash-mockup-network
+```
+
+After, build the Docker images by running:
+```bash
+docker-compose build
 ```
 
 ### Starting the Services
