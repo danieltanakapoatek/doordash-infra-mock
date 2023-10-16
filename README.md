@@ -43,7 +43,7 @@ Once the Docker image build is complete, run the following command to start serv
 docker-compose up -d
 ```
 
-### Configuring Presto
+## Configuring Presto
 Copy the configuration files to the presto container
 (Bug located - it is mandatory to restart the container 2 times for each catalog configuration):
 
@@ -100,12 +100,14 @@ Run MSCK REPAIR and exit beeline:
 MSCK REPAIR TABLE wikipedia_batch;
 ```
 
+## Submiting the Flink Job with JobManager
+
 Run the flink job - in this example it will get the data provided from the Kafka Producer:
 
 ```shell script
 docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window.py -d
 ```
-### Configuring Superset
+## Configuring Superset
 After that, clone the [Superset repository](https://github.com/apache/superset).
 
 Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file:
@@ -144,7 +146,7 @@ An alternative is to check the superset-resources folder and import the dashboar
 
 It is not possible to query between different Databases performing joins. But you can have data from different databases in the same dashboard.
 
-### Configuring Airflow
+## Configuring Airflow
 
 Build airflow - you can edit the Dockerfile and requirements.txt to change airflow version or add dependencies. For this case, we've added pyspark, boto3 and mwviews.
 ```bash
@@ -168,7 +170,7 @@ Check the services:
 3. visiting Superset [http://localhost:8088](http://localhost:8088).
 4. visiting Airflow [http://localhost:8082](http://localhost:8082).
 
-### Stopping the Services
+## Stopping the Services
 
 To stop the services and clean volumes, run the following commands:
 
