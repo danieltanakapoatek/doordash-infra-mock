@@ -125,7 +125,7 @@ Kill the volumes if needed (sometimes the UI loads with missing info regarding d
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml down -v
 ```
-Check the Superset UI at [localhost:8088](localhost:8088) and login as:
+Check the Superset UI at [localhost:8088](http://localhost:8088) and login as:
 
 user: admin
 
@@ -156,7 +156,7 @@ Initialize the Airflow database:
 docker-compose -f ../airflow/docker-compose.yaml up airflow-init
 ```
 
-Run Airflow and login with airflow:airflow at [localhost:8082](localhost:8082) after the service is ready:
+Run Airflow and login with airflow:airflow at [localhost:8082](http://localhost:8082) after the service is ready:
 ```bash
 docker-compose -f ../airflow/docker-compose.yaml up -d
 ```
