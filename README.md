@@ -106,7 +106,7 @@ Run the flink job - in this example it will get the data provided from the Kafka
 docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window.py -d
 ```
 ### Configuring Superset
-After that, clone the [Superset repository](https://github.com/apache/superset).
+After that, clone the [Superset repository](https://github.com/apache/superset). You can put the repo inside the `doordash-infra-mock` folder structure if you want.
 
 Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file:
 ```
