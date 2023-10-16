@@ -1151,3 +1151,118 @@
 [2023-10-16T12:47:27.587+0000] {logging_mixin.py:151} INFO - [2023-10-16T12:47:27.586+0000] {dag.py:2915} INFO - Sync 1 DAGs
 [2023-10-16T12:47:27.608+0000] {logging_mixin.py:151} INFO - [2023-10-16T12:47:27.608+0000] {dag.py:3696} INFO - Setting next_dagrun for wikipedia_etl to 2023-10-16T00:00:00+00:00, run_after=2023-10-17T00:00:00+00:00
 [2023-10-16T12:47:27.629+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.248 seconds
+[2023-10-16T19:05:45.878+0000] {processor.py:157} INFO - Started process (PID=35) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:05:45.879+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:05:45.880+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:45.879+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:05:46.610+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:05:46.959+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:46.959+0000] {manager.py:499} INFO - Created Permission View: %s
+[2023-10-16T19:05:46.976+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:46.975+0000] {manager.py:499} INFO - Created Permission View: %s
+[2023-10-16T19:05:46.984+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:46.984+0000] {manager.py:499} INFO - Created Permission View: %s
+[2023-10-16T19:05:46.985+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:46.984+0000] {security.py:708} INFO - Not syncing DAG-level permissions for DAG 'DAG:wikipedia_etl' as access control is unset.
+[2023-10-16T19:05:46.985+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:46.985+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:05:47.005+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:47.005+0000] {dag.py:2937} INFO - Creating ORM DAG for wikipedia_etl
+[2023-10-16T19:05:47.019+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:05:47.019+0000] {dag.py:3696} INFO - Setting next_dagrun for wikipedia_etl to 2023-10-01T00:00:00+00:00, run_after=2023-10-02T00:00:00+00:00
+[2023-10-16T19:05:47.046+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 1.173 seconds
+[2023-10-16T19:06:17.388+0000] {processor.py:157} INFO - Started process (PID=92) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:17.394+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:06:17.397+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:06:17.396+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:18.064+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:18.136+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:06:18.135+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:06:18.226+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:06:18.226+0000] {dag.py:3696} INFO - Setting next_dagrun for wikipedia_etl to 2023-10-01T00:00:00+00:00, run_after=2023-10-02T00:00:00+00:00
+[2023-10-16T19:06:18.264+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.881 seconds
+[2023-10-16T19:06:48.350+0000] {processor.py:157} INFO - Started process (PID=150) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:48.354+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:06:48.357+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:06:48.357+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:48.711+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:06:48.741+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:06:48.740+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:06:48.815+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.470 seconds
+[2023-10-16T19:07:19.199+0000] {processor.py:157} INFO - Started process (PID=206) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:19.201+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:07:19.202+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:07:19.202+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:20.063+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:20.156+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:07:20.155+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:07:20.278+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 1.085 seconds
+[2023-10-16T19:07:50.972+0000] {processor.py:157} INFO - Started process (PID=263) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:50.974+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:07:50.975+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:07:50.974+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:51.425+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:07:51.454+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:07:51.453+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:07:51.520+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.552 seconds
+[2023-10-16T19:08:21.791+0000] {processor.py:157} INFO - Started process (PID=321) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:21.792+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:08:21.794+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:08:21.793+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:22.463+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:22.500+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:08:22.499+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:08:22.614+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.827 seconds
+[2023-10-16T19:08:53.314+0000] {processor.py:157} INFO - Started process (PID=378) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:53.316+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:08:53.317+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:08:53.317+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:53.764+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:08:53.788+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:08:53.787+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:08:53.838+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.528 seconds
+[2023-10-16T19:09:23.912+0000] {processor.py:157} INFO - Started process (PID=436) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:23.913+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:09:23.914+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:09:23.913+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:24.278+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:24.303+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:09:24.302+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:09:24.350+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.442 seconds
+[2023-10-16T19:09:55.147+0000] {processor.py:157} INFO - Started process (PID=492) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:55.148+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:09:55.149+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:09:55.149+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:55.382+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:09:55.401+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:09:55.401+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:09:55.447+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.302 seconds
+[2023-10-16T19:10:25.815+0000] {processor.py:157} INFO - Started process (PID=547) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:25.816+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:10:25.817+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:10:25.816+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:26.131+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:26.149+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:10:26.149+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:10:26.190+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.377 seconds
+[2023-10-16T19:10:56.284+0000] {processor.py:157} INFO - Started process (PID=605) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:56.285+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:10:56.286+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:10:56.286+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:56.606+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:10:56.626+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:10:56.626+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:10:56.669+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.389 seconds
+[2023-10-16T19:11:26.743+0000] {processor.py:157} INFO - Started process (PID=657) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:26.744+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:11:26.745+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:11:26.745+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:27.134+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:27.154+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:11:27.153+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:11:27.200+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.460 seconds
+[2023-10-16T19:11:58.075+0000] {processor.py:157} INFO - Started process (PID=715) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:58.076+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:11:58.076+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:11:58.076+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:58.283+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:11:58.300+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:11:58.300+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:11:58.334+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.261 seconds
+[2023-10-16T19:12:29.201+0000] {processor.py:157} INFO - Started process (PID=770) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:12:29.202+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:12:29.203+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:12:29.202+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:12:29.497+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:12:29.515+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:12:29.514+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:12:29.551+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.353 seconds
+[2023-10-16T19:13:00.162+0000] {processor.py:157} INFO - Started process (PID=826) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:00.163+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:13:00.164+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:13:00.163+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:00.456+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:00.477+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:13:00.477+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:13:00.523+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.364 seconds
+[2023-10-16T19:13:30.612+0000] {processor.py:157} INFO - Started process (PID=885) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:30.613+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:13:30.614+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:13:30.614+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:30.842+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:13:30.860+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:13:30.859+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:13:30.900+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.290 seconds
+[2023-10-16T19:14:00.953+0000] {processor.py:157} INFO - Started process (PID=936) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:00.955+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:14:00.956+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:14:00.955+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:01.546+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:01.586+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:14:01.585+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:14:01.667+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.717 seconds
+[2023-10-16T19:14:31.798+0000] {processor.py:157} INFO - Started process (PID=998) to work on /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:31.800+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/wikipedia_etl.py for tasks to queue
+[2023-10-16T19:14:31.800+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:14:31.800+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:32.182+0000] {processor.py:839} INFO - DAG(s) dict_keys(['wikipedia_etl']) retrieved from /opt/airflow/dags/wikipedia_etl.py
+[2023-10-16T19:14:32.206+0000] {logging_mixin.py:151} INFO - [2023-10-16T19:14:32.205+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2023-10-16T19:14:32.267+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/wikipedia_etl.py took 0.472 seconds
