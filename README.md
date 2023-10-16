@@ -68,14 +68,14 @@ docker exec -it $PRESTO_CTR presto-cli
 show catalogs;
 ```
 ### Start the Hive Server
-Wait around 2 minutes or skip to the flink/airflow/superset part while hive is getting ready:
+Run the command below and wait around 2 minutes or skip to the flink/airflow/superset part while hive is getting ready:
 
 ```bash
 docker-compose exec -d hive /opt/apache-hive-3.1.2-bin/bin/hiveserver2
 ```
 
 ### Connect to beeline and create an external table from s3
-Connect to beeline (it is possible after hive is ready):
+Connect to beeline (it is possible after hive is ready - waiting around 2 minutes):
 ```bash
 docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2://localhost:10000
 ```
