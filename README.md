@@ -81,7 +81,7 @@ docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2:/
 ```
 
 Create an external table from s3 in the beeline - use this example to build yours (you should check schema and location fields):
-```bash
+```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS wikipedia_batch(
 domain STRING,
 pageviews BIGINT,
@@ -100,7 +100,7 @@ LOCATION
 
 Run MSCK REPAIR and exit beeline:
 
-```bash
+```sql
 MSCK REPAIR TABLE wikipedia_batch;
 ```
 

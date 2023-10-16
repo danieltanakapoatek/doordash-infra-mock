@@ -4,6 +4,7 @@ from sseclient import SSEClient as EventSource
 from kafka import KafkaProducer
 from kafka.errors import NoBrokersAvailable
 from datetime import datetime
+import time
 
 # https://kafka-python.readthedocs.io/en/master/apidoc/KafkaProducer.html
 def create_kafka_producer(bootstrap_server):
@@ -117,6 +118,8 @@ def parse_command_line_arguments():
 
 
 if __name__ == "__main__":
+    # wait for kafka to be up:
+    time.sleep(30)
     # parse command line arguments
     args = parse_command_line_arguments()
 
