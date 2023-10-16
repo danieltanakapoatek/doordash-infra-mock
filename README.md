@@ -96,7 +96,7 @@ LOCATION
 
 Run MSCK REPAIR and exit beeline:
 
-```bash
+```sql
 MSCK REPAIR TABLE wikipedia_batch;
 ```
 
