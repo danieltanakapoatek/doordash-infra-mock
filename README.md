@@ -157,7 +157,7 @@ Important to notice: it is not possible to query between different Databases per
 
 ## Configuring Airflow
 
-Build airflow - you can edit the `Dockerfile` and `requirements.txt` to change airflow version or add dependencies. For this case, we've added pyspark, boto3 and mwviews.
+Build airflow - you can edit the `Dockerfile` and `requirements.txt` to change airflow version or add dependencies. For this case, we've added pyspark, boto3 and mwviews. There is a DAG example file that sends data to a specific s3 folder, try to create a new DAG file or edit the current changing the s3 file destination.
 ```bash
 docker-compose -f ../airflow/docker-compose.yaml build
 ```
