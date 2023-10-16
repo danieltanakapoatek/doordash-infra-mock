@@ -1,6 +1,6 @@
 # doordash-mockup
 
-### Definining configuration files with AWS secrets
+## Definining configuration files with AWS secrets
 
 Secrets to be defined (aws_client_id and aws_client_secret) are present in some configuration files, follow the steps to populate it:
 
@@ -21,7 +21,7 @@ envsubst < ./hive/conf/hdfs-site-template.xml > ./hive/conf/hdfs-site.xml
 envsubst < ./hive/conf/hive-site-template.xml > ./hive/conf/hive-site.xml
 ```
 
-## Inside the `doordash-mockup` initiate the services
+## Inside the `doordash-mockup` build and start the services
 
 ### Building the Docker image
 
@@ -44,8 +44,9 @@ docker-compose up -d
 ```
 
 ## Configuring Presto configured with S3/hive and elasticsearch
-Copy the configuration files to the presto container
-(Bug located - it is mandatory to restart the container 2 times for each catalog configuration):
+
+### Copy the configuration files to the presto container
+Bug located - it is mandatory to restart the container 2 times for each catalog configuration.
 
 ```bash
 PRESTO_CTR=$(docker container ls | grep 'presto_1' | awk '{print $1}')
@@ -55,7 +56,8 @@ docker cp ./presto/etc/s3.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/
 docker restart $PRESTO_CTR
 ```
 
-Start Presto CLI and check if the elasticsearch and s3 catalog are there:
+### Start Presto CLI
+Check if the elasticsearch and s3 catalog are there:
 
 ```bash
 docker exec -it $PRESTO_CTR presto-cli
@@ -64,19 +66,20 @@ docker exec -it $PRESTO_CTR presto-cli
 ```bash
 show catalogs;
 ```
-
-After that, start the Hive server and wait 2 minutes or jump to the flink/airflow/superset part while hive is getting ready:
+### Start the Hive Server
+Wait around 2 minutes or skip to the flink/airflow/superset part while hive is getting ready:
 
 ```bash
 docker-compose exec -d hive /opt/apache-hive-3.1.2-bin/bin/hiveserver2
 ```
 
+### Connect to beeline and connect to an external table from s3
 Connect to beeline (it is possible after hive is ready):
 ```bash
 docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2://localhost:10000
 ```
 
-Create table from s3 in the beeline - use this example to build yours (you should check schema and location):
+Create a table from s3 in the beeline - use this example to build yours (you should check schema and location fields):
 ```bash
 CREATE EXTERNAL TABLE IF NOT EXISTS wikipedia_batch(
 domain STRING,
@@ -119,7 +122,7 @@ networks:
       name: doordash-mockup-network
 ```
 
-Start the superset container with the production docker-compose file:
+### Start the superset container with the production docker-compose file
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml up -d
 ```
@@ -134,6 +137,8 @@ user: admin
 
 password: admin
 
+### Create databases connections from Presto
+
 If you added all the services in the same network (editing the docker-compose file), you can just add a new presto database with the service name using SQL Alchemy:
 
 ```bash
@@ -141,11 +146,12 @@ presto://presto:8080/s3
 presto://presto:8080/elasticsearch
 ```
 
-Go to the SQL > SQL Lab view to query data from both sources - s3 and Elasticsearch
+### Query data using SQL Lab
+Go to the SQL > SQL Lab view to query data from both sources - s3 and Elasticsearch. After doing some tests, you can check the Presto UI [http://localhost:8080](http://localhost:8080) and check the completed queries section to understand better how Presto interacts with Superset.
 
-An alternative is to check the superset-resources folder and import the dashboard - it includes 4 datasets, 4 charts and 1 dashboard.
+An alternative is to check the superset-resources folder and import `dashboard_export_wikipedia.zip` - it includes 4 datasets, 4 charts and 1 dashboard. Or you can build your own visualizations.
 
-It is not possible to query between different Databases performing joins. But you can have data from different databases in the same dashboard.
+Important to notice: it is not possible to query between different Databases performing joins. But you can have data from different databases in the same dashboard.
 
 ## Configuring Airflow
 
@@ -164,12 +170,13 @@ Run Airflow and login with airflow:airflow at [http://localhost:8082](http://loc
 docker-compose -f ../airflow/docker-compose.yaml up -d
 ```
 
-Check the services:
+## Check all the running services
 
 1. visiting Flink Web UI [http://localhost:8081](http://localhost:8081).
 2. visiting Elasticsearch [http://localhost:9200](http://localhost:9200).
 3. visiting Superset [http://localhost:8088](http://localhost:8088).
 4. visiting Airflow [http://localhost:8082](http://localhost:8082).
+5. visiting Presto UI [http://localhost:8080](http://localhost:8080).
 
 ## Stopping the Services
 
