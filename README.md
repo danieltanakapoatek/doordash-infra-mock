@@ -77,7 +77,7 @@ docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2:/
 ```
 
 Create table from s3 in the beeline - use this example to build yours (you should check schema and location):
-```bash
+```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS wikipedia_batch(
 domain STRING,
 pageviews BIGINT,
