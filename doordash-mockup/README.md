@@ -121,7 +121,7 @@ Run the superset container with the production docker-compose file:
 docker-compose -f ../superset/docker-compose-non-dev.yml up -d
 ```
 
-Kill the volumes if needed (sometimes the UI loads without all the infos regarding databases) - this will clear all superset cache (And run the up command again):
+Kill the volumes if needed (sometimes the UI loads with missing info regarding databases) - this will clear all superset cache (After that, run the `docker-compose up` command again):
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml down -v
 ```
