@@ -77,7 +77,7 @@ docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2:/
 ```
 
 Create table from s3 in the beeline - use this example to build yours (you should check schema and location):
-```sql
+```bash
 CREATE EXTERNAL TABLE IF NOT EXISTS wikipedia_batch(
 domain STRING,
 pageviews BIGINT,
@@ -96,7 +96,7 @@ LOCATION
 
 Run MSCK REPAIR and exit beeline:
 
-```sql
+```bash
 MSCK REPAIR TABLE wikipedia_batch;
 ```
 
@@ -106,7 +106,7 @@ Run the flink job - in this example it will get the data provided from the Kafka
 docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window.py -d
 ```
 ### Configuring Superset
-After that, clone the [Superset repository](https://github.com/apache/superset). You can put the repo inside the `doordash-infra-mock` folder structure if you want.
+After that, clone the [Superset repository](https://github.com/apache/superset).
 
 Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file:
 ```
@@ -121,11 +121,11 @@ Run the superset container with the production docker-compose file:
 docker-compose -f ../superset/docker-compose-non-dev.yml up -d
 ```
 
-Kill the volumes if needed (sometimes the UI loads without all the infos regarding databases) - this will clear all superset cache (And run the up command again):
+Kill the volumes if needed (sometimes the UI loads with missing info regarding databases) - this will clear all superset cache (After that, run the `docker-compose up` command again):
 ```bash
 docker-compose -f ../superset/docker-compose-non-dev.yml down -v
 ```
-Check the Superset UI at [localhost:8088](localhost:8088) and login as:
+Check the Superset UI at [http://localhost:8088](http://localhost:8088) and login as:
 
 user: admin
 
@@ -156,7 +156,7 @@ Initialize the Airflow database:
 docker-compose -f ../airflow/docker-compose.yaml up airflow-init
 ```
 
-Run Airflow and login with airflow:airflow at [localhost:8082](localhost:8082) after the service is ready:
+Run Airflow and login with airflow:airflow at [http://localhost:8082](http://localhost:8082) after the service is ready:
 ```bash
 docker-compose -f ../airflow/docker-compose.yaml up -d
 ```
