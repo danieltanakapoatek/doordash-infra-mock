@@ -1,4 +1,14 @@
-# doordash-mockup
+# doordash-infra-mockup
+This repository is a infra-mockup containing the following resources: Kafka, Flink, Airflow, Pyspark, Presto and Superset. We've collected data from wikipedia in two different formats: streaming and batch.
+
+For batch data, we've used the mwviews library to collect pageviews from different wikipedia domains. For streaming data, the streaming url for wikipedia edits (https://stream.wikimedia.org/v2/stream/recentchange) with a Kafka producer. The batch data is collected and saved as .json in a raw layer and then processed in a pyspark job to be saved as .parquet in a trusted layer in AWS s3. Streaming data is processed by a Flink Job and sent to a local elasticsearch instance.
+
+Batch data job is orchestrated using Airflow - there is a task for raw data processing and a task for trusted data in the same DAG.
+
+There is a Presto virtualization for both different databases - s3 and elasticsearch.
+
+And finally, the endpoint to visualize everything with simple dashboard views using Superset. It is important to notice that Superset cannot join between different databases (at the begining of this project we thought this was a feature), an ETL job would be required to perform this. Though, it is possible to visualize in a same dashboard data from different databases. 
+
 
 ## Definining configuration files with AWS secrets
 
