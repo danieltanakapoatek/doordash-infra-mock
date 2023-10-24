@@ -1,0 +1,47 @@
+{
+    "type": "kafka",
+    "spec": {
+      "ioConfig": {
+        "type": "kafka",
+        "consumerProperties": {
+          "bootstrap.servers": "kafka:9092"
+        },
+        "topic": "wikipedia-events-processed",
+        "inputFormat": {
+          "type": "kafka",
+          "valueFormat": {
+            "type": "json"
+          }
+        },
+        "useEarliestOffset": true
+      },
+      "tuningConfig": {
+        "type": "kafka"
+      },
+      "dataSchema": {
+        "dataSource": "wikipedia-events-processed",
+        "timestampSpec": {
+          "column": "ten_second_window",
+          "format": "auto"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            {
+              "type": "long",
+              "name": "count_actions"
+            },
+            "domain",
+            {
+              "type": "long",
+              "name": "kafka.timestamp"
+            }
+          ]
+        },
+        "granularitySpec": {
+          "queryGranularity": "none",
+          "rollup": false,
+          "segmentGranularity": "day"
+        }
+      }
+    }
+  }

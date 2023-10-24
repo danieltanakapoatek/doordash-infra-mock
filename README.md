@@ -114,14 +114,26 @@ Run MSCK REPAIR and exit beeline:
 MSCK REPAIR TABLE wikipedia_batch;
 ```
 
-## Submiting the Flink Job with JobManager
+## Submiting the Flink Jobs with JobManager
 
-Run the flink job - in this example it will get the data provided from the Kafka Producer and process it sending to an elasticsearch sink:
+Run the flink job - in this examples it will get the data provided from the Kafka Producer and process it sending to an elasticsearch sink and a Kafka topic:
 
-```shell script
-docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window.py -d
+```bash
+docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window_es.py -d
+docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window_kafka.py -d
 ```
 You can check the created job in the Flink Web UI [http://localhost:8081](http://localhost:8081).
+
+## Configuring Apache Druid
+Clone the [druid repository](https://github.com/apache/druid) and change the git version to 27.0.0. After that, run the docker-compose:
+```bash
+docker-compose -f ../druid/distribution/docker/docker-compose.yml up -d
+```
+Run the following command to create a ingestion from the Kafka topic created by the Flink job:
+```bash
+curl -X 'POST' -H 'Content-Type:application/json' -d @druid/ingestion-spec.json http://localhost:8089/druid/indexer/v1/supervisor
+```
+
 ## Configuring Superset
 Clone the [Superset repository](https://github.com/apache/superset). It is recommended to have the superset folder in the same folder structure as the `doordash-infra-mock`
 
@@ -151,13 +163,17 @@ password: admin
 ```
 ### Create databases connections from Presto
 
-If you added all the services in the same network (editing the docker-compose file), you can just add a new presto database with the service name using SQL Alchemy:
+If you added all the services in the same network (editing the docker-compose file), you can just add a new presto/druid database with the service name using SQL Alchemy:
 
+### Presto connections:
 ```bash
 presto://presto:8080/s3
 presto://presto:8080/elasticsearch
 ```
-
+### Druid connection:
+```bash
+druid://broker:8082/druid/v2/sql
+```
 ### Query data using SQL Lab
 Go to the SQL > SQL Lab view to query data from both sources - s3 and Elasticsearch. After doing some tests, you can check the [Presto UI](http://localhost:8080) and find the completed queries section to understand better how Presto interacts with Superset.
 
