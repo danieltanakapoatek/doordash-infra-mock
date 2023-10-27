@@ -1,11 +1,11 @@
 # doordash-infra-mockup
 This repository is a infra-mockup containing the following resources: Kafka, Flink, Airflow, Pyspark, Presto and Superset. We've collected data from wikipedia in two different formats: streaming and batch.
 
-For batch data, we've used the mwviews library to collect pageviews from different wikipedia domains. For streaming data, the streaming url for wikipedia edits (https://stream.wikimedia.org/v2/stream/recentchange) with a Kafka producer. The batch data is collected and saved as .json in a raw layer and then processed in a pyspark job to be saved as .parquet in a trusted layer in AWS s3. Streaming data is processed by a Flink Job and sent to a local elasticsearch instance.
+For batch data, we've used the mwviews library to collect pageviews from different wikipedia domains. For streaming data, the streaming url for wikipedia edits (https://stream.wikimedia.org/v2/stream/recentchange) with a Kafka producer. The batch data is collected and saved as .json in a raw layer and then processed in a pyspark job to be saved as .parquet in a trusted layer in AWS s3. Streaming data is processed by a Flink Job and sent to a local elasticsearch instance and to a Kafka topic with two different jobs.
 
 Batch data job is orchestrated using Airflow - there is a task for raw data processing and a task for trusted data in the same DAG.
 
-There is a Presto virtualization for both different databases - s3 and elasticsearch.
+There is a Presto virtualization for different databases - s3, elasticsearch and druid.
 
 And finally, the endpoint to visualize everything with simple dashboard views using Superset. It is important to notice that Superset cannot join between different databases (at the begining of this project we thought this was a feature), an ETL job would be required to perform this. Though, it is possible to visualize in a same dashboard data from different databases. 
 
@@ -54,10 +54,12 @@ Once the Docker image build is complete, run the following command to start serv
 docker-compose up -d
 ```
 
-## Configuring Presto with S3/hive and elasticsearch
+## Configuring Presto with S3/hive, elasticsearch and Apache Druid
 
 ### Copy the configuration files to the presto container
-Bug located - it is mandatory to restart the container 2 times for each catalog configuration.
+1st Bug located - it is mandatory to restart the container 2 times for each catalog configuration.
+
+2nd Bug located - druid presto connection is not working yet. We're investigating the issue.
 
 ```bash
 PRESTO_CTR=$(docker container ls | grep 'presto_1' | awk '{print $1}')
@@ -65,10 +67,12 @@ docker cp ./presto/etc/elasticsearch.properties $PRESTO_CTR:/opt/presto-server/e
 docker restart $PRESTO_CTR
 docker cp ./presto/etc/s3.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/s3.properties
 docker restart $PRESTO_CTR
+docker cp ./presto/etc/druid.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/druid.properties
+docker restart $PRESTO_CTR
 ```
 
 ### Start Presto CLI
-Check if the elasticsearch and s3 catalog are there:
+Check if the elasticsearch, s3 and Druid catalog are there:
 
 ```bash
 docker exec -it $PRESTO_CTR presto-cli
@@ -125,11 +129,26 @@ docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_e
 You can check the created job in the Flink Web UI [http://localhost:8081](http://localhost:8081).
 
 ## Configuring Apache Druid
-Clone the [druid repository](https://github.com/apache/druid) and change the git version to 27.0.0. After that, run the docker-compose:
+Clone the [druid repository](https://github.com/apache/druid) and change the git version to 27.0.0 in a separate terminal. After that, add to the docker-compose the network configuration, edit the druid/distribution/docker/environment adding the kafka extensions and running it.
+
+### Adding the network
+```
+networks: 
+  default: 
+    external: 
+      name: doordash-mockup-network
+```
+
+### Adding the kafka extensions to druid/distribution/docker/environment
+```
+druid_extensions_loadList=["druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-multi-stage-query", "druid-kafka-indexing-service", "druid-kafka-extraction-namespace", "kafka-emitter"]
+```
+
+### And finally running it
 ```bash
 docker-compose -f ../druid/distribution/docker/docker-compose.yml up -d
 ```
-Run the following command to create a ingestion from the Kafka topic created by the Flink job:
+Run the following command to create an ingestion from the Kafka topic created by the Flink job:
 ```bash
 curl -X 'POST' -H 'Content-Type:application/json' -d @druid/ingestion-spec.json http://localhost:8089/druid/indexer/v1/supervisor
 ```
@@ -169,6 +188,7 @@ If you added all the services in the same network (editing the docker-compose fi
 ```bash
 presto://presto:8080/s3
 presto://presto:8080/elasticsearch
+presto://presto:8080/druid
 ```
 ### Druid connection:
 ```bash
@@ -212,6 +232,7 @@ To stop the services and clean volumes, run the following commands:
 
 ```bash
 docker-compose down -v
+docker-compose -f ../druid/distribution/docker/docker-compose.yml down -v
 docker-compose -f ../superset/docker-compose-non-dev.yml down -v
 docker-compose -f ../airflow/docker-compose.yaml down -v
 ```
