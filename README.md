@@ -9,49 +9,15 @@ There is a Presto virtualization for different databases - s3, elasticsearch and
 
 And finally, the endpoint to visualize everything with simple dashboard views using Superset. It is important to notice that Superset cannot join between different databases (at the begining of this project we thought this was a feature), an ETL job would be required to perform this. Though, it is possible to visualize in a same dashboard data from different databases. 
 
+## Building and Starting the services
 
-## Definining configuration files with AWS secrets
+### Building and running the Docker images - Airflow and data generator
 
-Secrets to be defined (aws_client_id and aws_client_secret) are present in some configuration files, follow the steps to populate it:
-
-First, create the airflow .env files. Substitute the aws values for the correct:
+Start by building and running the Docker images using the make command - this will build the data generator and airflow images:
 ```bash
 export AWS_ACCESS_KEY={aws_access_key}
 export AWS_SECRET_ACCESS={aws_secret_access}
-envsubst < ./airflow/.env-template > ./airflow/.env
-envsubst < ./airflow/dags/.env-template > ./airflow/dags/.env
-```
-
-After that, inside the `doordash-mockup` folder, use the template files to create your config files:
-
-```bash
-cd doordash-mockup
-envsubst < ./presto/etc/s3-template.properties > ./presto/etc/s3.properties
-envsubst < ./hive/conf/hdfs-site-template.xml > ./hive/conf/hdfs-site.xml
-envsubst < ./hive/conf/hive-site-template.xml > ./hive/conf/hive-site.xml
-```
-
-## Inside `doordash-mockup` folder - build and start the services
-
-### Building the Docker image
-
-First, create a single network that will be shared between services (this will allow to create connections with the service names):
-
-```bash
-docker network create doordash-mockup-network
-```
-
-After, build the Docker images by running:
-```bash
-docker-compose build
-```
-
-### Starting the Services
-
-Once the Docker image build is complete, run the following command to start services:
-
-```bash
-docker-compose up -d
+make run_services
 ```
 
 ## Configuring Presto with S3/hive, elasticsearch and Apache Druid
@@ -63,11 +29,11 @@ docker-compose up -d
 
 ```bash
 PRESTO_CTR=$(docker container ls | grep 'presto_1' | awk '{print $1}')
-docker cp ./presto/etc/elasticsearch.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/elasticsearch.properties
+docker cp ./doordash-mockup/presto/etc/elasticsearch.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/elasticsearch.properties
 docker restart $PRESTO_CTR
-docker cp ./presto/etc/s3.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/s3.properties
+docker cp ./doordash-mockup/presto/etc/s3.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/s3.properties
 docker restart $PRESTO_CTR
-docker cp ./presto/etc/druid.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/druid.properties
+docker cp ./doordash-mockup/presto/etc/druid.properties $PRESTO_CTR:/opt/presto-server/etc/catalog/druid.properties
 docker restart $PRESTO_CTR
 ```
 
@@ -85,13 +51,13 @@ show catalogs;
 Run the command below and wait around 2 minutes or skip to the flink/airflow/superset part while hive is getting ready:
 
 ```bash
-docker-compose exec -d hive /opt/apache-hive-3.1.2-bin/bin/hiveserver2
+make start_hive
 ```
 
 ### Connect to beeline and create an external table from s3
 Connect to beeline (it is possible after hive is ready - waiting around 2 minutes):
 ```bash
-docker-compose exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2://localhost:10000
+docker-compose -f ./doordash-mockup/docker-compose.yml exec hive /opt/apache-hive-3.1.2-bin/bin/beeline -u  jdbc:hive2://localhost:10000
 ```
 
 Create an external table from s3 in the beeline - use this example to build yours (you should check schema and location fields):
@@ -123,38 +89,24 @@ MSCK REPAIR TABLE wikipedia_batch;
 Run the flink job - in this examples it will get the data provided from the Kafka Producer and process it sending to an elasticsearch sink and a Kafka topic:
 
 ```bash
-docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window_es.py -d
-docker-compose exec jobmanager ./bin/flink run -py /opt/pyflink-jobs/wikipedia_events_proccessing_tumbling_window_kafka.py -d
+make run_flink_jobs
 ```
 You can check the created job in the Flink Web UI [http://localhost:8081](http://localhost:8081).
 
 ## Configuring Apache Druid
-Clone the [druid repository](https://github.com/apache/druid) and change the git version to 27.0.0 in a separate terminal. After that, add to the docker-compose the network configuration, edit the druid/distribution/docker/environment adding the kafka extensions and running it.
+Check the druid-docker folder for more information, there is a Docker structure based on Apache Druid git.
 
-### Adding the network
-```
-networks: 
-  default: 
-    external: 
-      name: doordash-mockup-network
-```
-
-### Adding the kafka extensions to druid/distribution/docker/environment
-```
-druid_extensions_loadList=["druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-multi-stage-query", "druid-kafka-indexing-service", "druid-kafka-extraction-namespace", "kafka-emitter"]
-```
-
-### And finally running it
+### Run Apache Druid using
 ```bash
-docker-compose -f ../druid/distribution/docker/docker-compose.yml up -d
+make run_druid
 ```
 Run the following command to create an ingestion from the Kafka topic created by the Flink job:
 ```bash
-curl -X 'POST' -H 'Content-Type:application/json' -d @druid/ingestion-spec.json http://localhost:8089/druid/indexer/v1/supervisor
+make create_druid_ingestion
 ```
 
 ## Configuring Superset
-Clone the [Superset repository](https://github.com/apache/superset). It is recommended to have the superset folder in the same folder structure as the `doordash-infra-mock`
+Check the [Superset repository](https://github.com/apache/superset). It is recommended to have the superset folder in the same folder structure as the `doordash-infra-mock` if you want to get more info or update the version.
 
 Edit the /superset/docker-compose-non-dev.yml docker-compose file adding a network option at the end of the docker-compose file (this will allow to communicate the services using their name as URI):
 ```
@@ -166,12 +118,12 @@ networks:
 
 ### Start the superset container with the production docker-compose file
 ```bash
-docker-compose -f ../superset/docker-compose-non-dev.yml up -d
+docker-compose -f ./superset/docker-compose-non-dev.yml up -d
 ```
 
 Kill the volumes if needed (sometimes the UI loads with missing info regarding databases) - this will clear all superset cache (After that, run the `docker-compose up` command again):
 ```bash
-docker-compose -f ../superset/docker-compose-non-dev.yml down -v
+docker-compose -f ./superset/docker-compose-non-dev.yml down -v
 ```
 ### Check the Superset UI
 
@@ -201,23 +153,6 @@ You can use the superset-resources folder and import `dashboard_export_wikipedia
 
 Important to notice: it is not possible to query between different Databases performing joins. But you can have data from different databases in the same dashboard.
 
-## Configuring Airflow
-
-Build airflow - you can edit the `Dockerfile` and `requirements.txt` to change airflow version or add dependencies. For this case, we've added pyspark, boto3 and mwviews. There is a DAG example file that sends data to a specific s3 folder, try to create a new DAG file or edit the current changing the s3 file destination.
-```bash
-docker-compose -f ../airflow/docker-compose.yaml build
-```
-
-Initialize the Airflow database:
-```bash
-docker-compose -f ../airflow/docker-compose.yaml up airflow-init
-```
-
-Run Airflow and login with airflow:airflow at [Airflow WebServer UI](http://localhost:8082) after the service is ready:
-```bash
-docker-compose -f ../airflow/docker-compose.yaml up -d
-```
-
 ## Check all the running services
 
 1. visiting Flink Web UI [http://localhost:8081](http://localhost:8081).
@@ -231,8 +166,5 @@ docker-compose -f ../airflow/docker-compose.yaml up -d
 To stop the services and clean volumes, run the following commands:
 
 ```bash
-docker-compose down -v
-docker-compose -f ../druid/distribution/docker/docker-compose.yml down -v
-docker-compose -f ../superset/docker-compose-non-dev.yml down -v
-docker-compose -f ../airflow/docker-compose.yaml down -v
+make stop_all
 ```
