@@ -165,6 +165,7 @@ Important to notice: it is not possible to query between different Databases per
 3. visiting Superset [http://localhost:8088](http://localhost:8088).
 4. visiting Airflow WebServer UI [http://localhost:8082](http://localhost:8082).
 5. visiting Presto UI [http://localhost:8080](http://localhost:8080).
+6. visiting Apache Druid UI [http://localhost:8888](http://localhost:8888).
 
 ## Stopping the Services
 
