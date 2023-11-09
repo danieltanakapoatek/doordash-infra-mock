@@ -35,7 +35,7 @@ with DAG(
         container_name="airflow_jobs_trusted",
         api_version="auto",
         auto_remove=True,
-        command="python /opt/airflow/wikipedia_trusted_job.py --date={{ ds }}",
+        command="python /wikipedia_trusted_job.py --date={{ ds }}",
         docker_url="tcp://docker-proxy:2375",
         network_mode="bridge",
     )
