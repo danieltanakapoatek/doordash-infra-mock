@@ -37,7 +37,7 @@ run_druid:
 
 .PHONY: create_druid_ingestion
 create_druid_ingestion:
-	curl -X 'POST' -H 'Content-Type:application/json' -d @doordash-mockup/druid/ingestion-spec.json http://localhost:8089/druid/indexer/v1/supervisor
+	curl -X 'POST' -H 'Content-Type:application/json' -d @doordash-mockup/druid/ingestion-spec.json http://localhost:8099/druid/indexer/v1/supervisor
 
 .PHONY: run_doordash_mockup_services
 run_services:

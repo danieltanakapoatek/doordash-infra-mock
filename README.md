@@ -169,7 +169,7 @@ Important to notice: it is not possible to query between different Databases per
 
 ## Stopping the Services
 
-To stop the services and clean volumes, run the following commands:
+To stop the services and clean volumes, run the following command:
 
 ```bash
 make stop_all
