@@ -21,7 +21,7 @@ make run_services
 ```
 
 ## Access Airflow and activate any of the DAGs
-When accessing airflow via localhost:8082 and with login airflow/airflow you can find 2 different DAG's. The first DAG runs with dependencies inside Airflow and the second example will trigger containers that are not attached to the Airflow dependencies - check the Dockerfile under the jobs folder to see the difference. In order to follow the container creation you can use the following command:
+When accessing airflow via [http://localhost:8082](http://localhost:8082) and with login airflow/airflow you can find 2 different DAG's. The first DAG runs with dependencies inside Airflow and the second example will trigger containers that are not attached to the Airflow dependencies - check the Dockerfile under the jobs folder to see the difference. In order to follow the container creation from the second DAG you can use the following command:
 ```
 watch docker ps -f name=airflow_jobs --no-trunc
 ```
